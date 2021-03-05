@@ -16,7 +16,7 @@ public class SuperheroController {
 
     @GetMapping(value = "/name/{substring}")
     public List<Superhero> searchSuperheroByName(@PathVariable String substring) {
-        return superheroOperationsService.findSuperherosByName(substring);
+        return superheroOperationsService.findSuperheroesByName(substring);
     }
 
     @GetMapping(value = "/{id}")
@@ -25,8 +25,8 @@ public class SuperheroController {
     }
 
     @GetMapping
-    public List<Superhero> findAllSuperheros() {
-        return superheroOperationsService.findAllSuperheros();
+    public List<Superhero> findAllSuperheroes() {
+        return superheroOperationsService.findAllSuperheroes();
     }
 
     @DeleteMapping(value = "/{id}")

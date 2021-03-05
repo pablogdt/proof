@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,4 +16,7 @@ public class Superhero implements Serializable {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany
+    private List<Superpower> superpowers;
 }
