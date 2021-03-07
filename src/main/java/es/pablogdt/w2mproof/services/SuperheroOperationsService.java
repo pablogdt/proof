@@ -5,6 +5,8 @@ import es.pablogdt.w2mproof.annotations.Chronometer;
 import es.pablogdt.w2mproof.exceptions.SuperheroNotFoundException;
 import es.pablogdt.w2mproof.model.Superhero;
 import es.pablogdt.w2mproof.model.Superpower;
+import es.pablogdt.w2mproof.model.dto.SuperheroDTO;
+import es.pablogdt.w2mproof.model.dto.SuperpowerDTO;
 import es.pablogdt.w2mproof.repository.SuperheroRepository;
 import es.pablogdt.w2mproof.repository.SuperpowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class SuperheroOperationsService {
 
     @Chronometer
     @Cacheable(cacheNames = "superheroes")
-    public Superhero findSuperheroById(Long id) throws SuperheroNotFoundException {
+    public Superhero findSuperheroById(Long id) {
         Optional<Superhero> optional = superheroRepository.findById(id);
         if (optional.isEmpty()) {
             throw new SuperheroNotFoundException();
@@ -46,7 +48,7 @@ public class SuperheroOperationsService {
     }
 
     @Chronometer
-    public Superhero modifySuperhero(Long id, Superhero superhero) throws SuperheroNotFoundException {
+    public Superhero modifySuperhero(Long id, SuperheroDTO superhero) {
         Optional<Superhero> optional = superheroRepository.findById(id);
         if (optional.isEmpty()) {
             throw new SuperheroNotFoundException();
@@ -57,7 +59,7 @@ public class SuperheroOperationsService {
             }
             if (superhero.getSuperpowers() != null) {
                 List<Superpower> superpowers = new ArrayList<>();
-                for (Superpower superpower : superhero.getSuperpowers()) {
+                for (SuperpowerDTO superpower : superhero.getSuperpowers()) {
                     Optional<Superpower> optionalSuperpower = superpowerRepository.findById(superpower.getId());
                     Superpower superpowerSaved;
                     if (optionalSuperpower.isPresent()) {
@@ -72,7 +74,7 @@ public class SuperheroOperationsService {
     }
 
     @Chronometer
-    public void deleteSuperhero(Long id) throws SuperheroNotFoundException {
+    public void deleteSuperhero(Long id) {
         try {
             superheroRepository.deleteById(id);
         } catch (Exception exception) {

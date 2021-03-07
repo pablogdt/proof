@@ -3,6 +3,7 @@ package es.pablogdt.w2mproof.services;
 import com.google.common.collect.Lists;
 import es.pablogdt.w2mproof.exceptions.SuperheroNotFoundException;
 import es.pablogdt.w2mproof.model.Superhero;
+import es.pablogdt.w2mproof.model.dto.SuperheroDTO;
 import es.pablogdt.w2mproof.repository.SuperheroRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,7 +80,7 @@ public class SuperheroOperationsServiceTest {
         Superhero superhero1 = new Superhero();
         superhero1.setId(0L);
         superhero1.setName("Storm");
-        Superhero modifiedSuperhero = new Superhero();
+        SuperheroDTO modifiedSuperhero = new SuperheroDTO();
         modifiedSuperhero.setName("Batman");
         when(superheroRepository.findById(isA(Long.class))).thenReturn(Optional.of(superhero1));
         when(superheroRepository.save(isA(Superhero.class))).thenAnswer(new Answer() {
@@ -96,7 +97,7 @@ public class SuperheroOperationsServiceTest {
         Superhero superhero1 = new Superhero();
         superhero1.setId(0L);
         superhero1.setName("Storm");
-        Superhero modifiedSuperhero = new Superhero();
+        SuperheroDTO modifiedSuperhero = new SuperheroDTO();
         modifiedSuperhero.setName("Batman");
         when(superheroRepository.findById(isA(Long.class))).thenReturn(Optional.empty());
         superheroOperationsService.modifySuperhero(0L, modifiedSuperhero);

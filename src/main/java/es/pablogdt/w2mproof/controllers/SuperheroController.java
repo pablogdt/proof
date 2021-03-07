@@ -1,6 +1,7 @@
 package es.pablogdt.w2mproof.controllers;
 
 import es.pablogdt.w2mproof.model.Superhero;
+import es.pablogdt.w2mproof.model.dto.SuperheroDTO;
 import es.pablogdt.w2mproof.services.SuperheroOperationsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -67,7 +68,7 @@ public class SuperheroController {
                     content = @Content(schema = @Schema(implementation = Superhero.class))),
             @ApiResponse(responseCode = "404", description = "not found", content = @Content(schema = @Schema(type = "string", example = "Superhero not found")))
     })
-    public Superhero modifySuperhero(@PathVariable Long id, @RequestBody Superhero superhero) {
+    public Superhero modifySuperhero(@PathVariable Long id, @RequestBody SuperheroDTO superhero) {
         return superheroOperationsService.modifySuperhero(id, superhero);
     }
 }

@@ -1,25 +1,21 @@
-package es.pablogdt.w2mproof.model;
+package es.pablogdt.w2mproof.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
-@Entity
-@Table(name = "superpowers")
-public class Superpower implements Serializable {
+public class SuperpowerDTO implements Serializable {
     @Id
-    @GeneratedValue
     private Long id;
 
     @NotBlank
     @NotNull
+    @Schema(description = "Super power name", example = "Super strength")
     private String name;
 
     @NotBlank
